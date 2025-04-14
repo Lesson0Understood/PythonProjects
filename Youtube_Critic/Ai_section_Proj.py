@@ -1,7 +1,13 @@
 import os
 import google.generativeai as genai
+from dotenv import load_dotenv
 
-genai.configure(api_key="AIzaSyBAR9hesg9R2XvdGqdmmyfvQA4Zp--UK-Q")
+
+load_dotenv()
+
+gemini_key = os.getenv("GEMINI_KEY")
+
+genai.configure(api_key=gemini_key)
 
 # Create the model
 generation_config = {

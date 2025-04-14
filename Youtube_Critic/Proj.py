@@ -1,8 +1,9 @@
+import os
 from youtube_transcript_api import YouTubeTranscriptApi
 from googleapiclient.discovery import build
 
 # Replace 'YOUR_API_KEY' with your actual API key from Google Cloud
-API_KEY = 'AIzaSyDUbnu5dtuOyXxNbmUjmdUYIhdMEnHI7yY'
+YOUTUBE_API_KEY = os.getenv("YOUTUBE_API_KEY")
 YOUTUBE_API_SERVICE_NAME = 'youtube'
 YOUTUBE_API_VERSION = 'v3'
 
@@ -19,7 +20,7 @@ def search_videos_and_group_by_creator(queries, genres,max_results):
         A dictionary where keys are creator channel IDs and values are lists of
         dictionaries, each containing 'video_id', 'query', and 'genre'.
     """
-    youtube = build(YOUTUBE_API_SERVICE_NAME, YOUTUBE_API_VERSION, developerKey=API_KEY)
+    youtube = build(YOUTUBE_API_SERVICE_NAME, YOUTUBE_API_VERSION, developerKey=YOUTUBE_API_KEY)
     videos_by_creator = {}
 
     for query in queries:
@@ -56,10 +57,18 @@ def search_videos_and_group_by_creator(queries, genres,max_results):
     return videos_by_creator
 
 if __name__ == '__main__':
-    search_queries = ["understanding neural network, math intution"]
-    video_genres = ["deep learning"]
+    search_queries = [input("Query: ")]
+    video_genres = [input("Genre: ")]
 
     grouped_videos = search_videos_and_group_by_creator(search_queries, video_genres,100)
+
+
+    # Define the output directory name
+    output_dir = "Reports"
+
+    # Create the directory if it doesn't already exist
+    os.makedirs(output_dir, exist_ok=True)
+
 
     for creator_id, creator_data in grouped_videos.items():
 
