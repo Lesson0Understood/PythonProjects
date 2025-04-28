@@ -1,0 +1,13 @@
+Channel Name: Intuitive Machine Learning
+Channel ID: UCiuhuf2Xq0d05_4sHG0xmQA
+
+--- Combined Transcripts ---
+
+--- Video 1 ---
+Video ID: 0p0o5cmgLdE
+Video Title: K Nearest Neighbors | Intuitive explained | Machine Learning Basics
+
+Transcript:
+K nearest neighbor is a super simple supervised machine learning algorithm that can be solved for both classification and regression problem. Here it’s a simple two dimensional example for you to have a better understanding of this algorithm. Let’s say we want to classify the given point into one of the three groups. In order to find the k nearest neighbors of the given point, we need to calculate the distance between the given point to the other points. There are many distance functions but Euclidean is the most commonly used one. Then, we need to sort the nearest neighbors of the given point by the distances in increasing order.
+For the classification problem, the point is classified by a vote of its neighbors, then the point is assigned to the class most common among its k nearest neighbors. K value here control the balance between overfitting and underfitting, the best value can be found with cross validation and learning curve. A small k value usually leads to low bias but high variance, and a large k usually leads to high bias but low variance, it is important to find a balance between them. For the regression problem, we simply return the average of the k nearest neighbors’ labels as the prediction Here it is a simple code example, we use the very famous iris dataset and only take the first two features for demonstration purpose. The KNN algorithm is from sklearn and it is self explanatory. I encourage you to try it yourself with different parameters. These two plots are real visualization from the previous code example with different k setting. The left plot shows classification decision boundary with k = 15, and the right plot is for k = 3. Thanks for watching, this is bitesize ML concept from Intuitive machine learning. If you likes this video and want to learn more, make sure to comment, like and subscribe to our channel. See you at the next one!
+

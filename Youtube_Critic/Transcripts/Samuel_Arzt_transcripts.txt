@@ -1,0 +1,24 @@
+Channel Name: Samuel Arzt
+Channel ID: UC_eerU4SleeptEbD2AA_nDw
+
+--- Combined Transcripts ---
+
+--- Video 1 ---
+Video ID: rEDzUT3ymw4
+Video Title: Explained In A Minute: Neural Networks
+
+Transcript:
+Imagine a Neural Network as a kind of
+black box, which takes one or multiple inputs like the sensors of a self-driving
+car, processing them into one or multiple outputs like the controls of that car.
+The neural network itself consists of many small units called "Neurons". These
+Neurons are grouped into several layers. Units of one layer interact with the Neurons of the next layer through "weighted connections" which really are just connections with a real-valued number attached to them.
+A Neuron takes the value of a connected Neuron and multiplies it with their
+connection's weight. The sum of all connected Neurons and the Neuron's bias
+value is then put into a so-called "activation function", which simply
+mathematically transforms the value before it finally can be passed on to
+the next Neuron. This way the inputs are propagated through the whole network.
+That's pretty much all the network does but the real deal behind neural networks
+is to find the right weights in order to get the right results. This can be done
+through a wide range of techniques such as machine learning however that's a topic for another minute.
+
