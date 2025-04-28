@@ -1,7 +1,6 @@
-# ai_analyzer.py
 import google.generativeai as genai
-import config # To get model name and generation config
-import json # To potentially parse the JSON response later if needed
+import config
+import json
 
 def configure_genai(api_key):
     """Configures the Google Generative AI client."""
@@ -19,10 +18,10 @@ def build_genai_model():
         model = genai.GenerativeModel(
             model_name=config.AI_MODEL_NAME,
             generation_config=config.GENERATION_CONFIG,
-            # safety_settings= Adjust safety settings if needed
         )
         print(f"Generative AI model '{config.AI_MODEL_NAME}' initialized.")
         return model
+
     except Exception as e:
         print(f"FATAL: Failed to initialize Generative AI model '{config.AI_MODEL_NAME}': {e}")
         raise SystemExit(f"Could not build Generative AI model: {e}")
@@ -44,7 +43,7 @@ def analyze_transcripts(model, channel_name, combined_transcript_text):
 
     print(f"  Analyzing transcripts for '{channel_name}' with AI (expecting JSON)...")
 
-    # --- Enhanced Prompt Definition ---
+    # Prompt Definition
     prompt = f"""
 Act as an insightful YouTube Content Strategist & Critic. Your mission is to evaluate the channel '{channel_name}' by analyzing the textual blueprint provided – the combined transcripts of several videos. You must distill the essence of the channel's communication style and effectiveness *solely* from this text.
 
@@ -112,11 +111,11 @@ Transcripts to Analyze:
 
 Now, provide the JSON critique for '{channel_name}'.
 """
-    # --- End of Enhanced Prompt Definition ---
+    # End of prompt Definition
     try:
         response = model.generate_content(prompt)
 
-        # The response should be directly usable JSON text because of the mime_type setting
+        # The response should be directly usable json text because of the mime_type setting
         critique_json_text = response.text
 
         # Optional: Validate if it's proper JSON before saving
@@ -125,9 +124,11 @@ Now, provide the JSON critique for '{channel_name}'.
             json.loads(critique_json_text)
             print(f"  AI analysis complete for '{channel_name}' (JSON validated).")
             return critique_json_text
+
         except json.JSONDecodeError as json_err:
             print(f"  WARNING: AI response for '{channel_name}' was NOT valid JSON. Error: {json_err}")
             print(f"  Raw AI Response:\n---\n{critique_json_text}\n---")
+
             # Return a JSON-like error string instead
             return json.dumps({
                 "error": "AI Analysis Failed",
@@ -137,7 +138,8 @@ Now, provide the JSON critique for '{channel_name}'.
             }, indent=2)
 
     except Exception as e:
-        print(f"  ERROR during AI analysis call for '{channel_name}': {e}")
+        print(f"ERROR during AI analysis call for '{channel_name}': {e}")
+    
         # Log the specific error for debugging
         return json.dumps({
             "error": "AI Analysis Failed",

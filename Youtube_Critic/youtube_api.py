@@ -1,4 +1,3 @@
-# youtube_api.py
 from googleapiclient.discovery import build
 from googleapiclient.errors import HttpError
 
@@ -8,9 +7,9 @@ def build_youtube_client(api_key):
         youtube = build('youtube', 'v3', developerKey=api_key)
         print("YouTube API client initialized successfully.")
         return youtube
+
     except Exception as e:
         print(f"FATAL: Failed to initialize YouTube API client: {e}")
-        # Consider raising the exception if the app cannot proceed without it
         raise SystemExit(f"Could not build YouTube client: {e}")
 
 
@@ -37,7 +36,7 @@ def search_videos(youtube_client, queries, genres, max_results):
 
                 for item in items:
                     if item['id']['kind'] != 'youtube#video':
-                         continue # Ensure it's actually a video result
+                         continue # Ensures it's actually a video result
 
                     video_id = item['id']['videoId']
                     # Skip if video already processed from another query/genre
@@ -49,7 +48,7 @@ def search_videos(youtube_client, queries, genres, max_results):
                     video_title = item['snippet'].get('title', 'Unknown Title')
 
                     if not channel_id:
-                        print(f"    WARNING: Skipping video {video_id} ('{video_title}') - Missing channel ID.")
+                        print(f"WARNING: Skipping video {video_id} ('{video_title}') - Missing channel ID.")
                         continue
 
                     if channel_id not in videos_by_creator:
@@ -72,8 +71,6 @@ def search_videos(youtube_client, queries, genres, max_results):
 
             except HttpError as e:
                 print(f"  ERROR during YouTube API search for '{search_term}': {e}")
-                # Decide if you want to continue or stop on API errors
-                # Depending on the error (e.g., quota), might need to stop
                 if e.resp.status == 403:
                      print("  FATAL: Received 403 Forbidden error. Check API key permissions or quota.")
                      raise SystemExit("YouTube API Forbidden Error") # Stop execution

@@ -1,6 +1,5 @@
-# transcript_utils.py
 from youtube_transcript_api import YouTubeTranscriptApi, TranscriptsDisabled, NoTranscriptFound
-import config # Import config to get language preferences
+import config
 
 def get_transcript(video_id):
     """
@@ -17,17 +16,17 @@ def get_transcript(video_id):
 
         # Try finding a manually created transcript in preferred languages
         try:
-            # print(f"    - Attempting manual transcript ({', '.join(languages)}) for {video_id}...")
+            print(f"    - Attempting manual transcript ({', '.join(languages)}) for {video_id}...")
             transcript_obj = transcript_list.find_manually_created_transcript(languages)
-            # print(f"    - Found manual transcript for {video_id}")
+            print(f"    - Found manual transcript for {video_id}")
         except NoTranscriptFound:
-            # print(f"    - No manual transcript found in {', '.join(languages)}. Trying generated...")
+            print(f"    - No manual transcript found in {', '.join(languages)}. Trying generated...")
             # Try finding a generated transcript in preferred languages
             try:
                 transcript_obj = transcript_list.find_generated_transcript(languages)
-                # print(f"    - Found generated transcript for {video_id}")
+                print(f"    - Found generated transcript for {video_id}")
             except NoTranscriptFound:
-                # print(f"    - WARNING: No transcript found in preferred languages ({', '.join(languages)}) for {video_id}.")
+                print(f"    - WARNING: No transcript found in preferred languages ({', '.join(languages)}) for {video_id}.")
                 return None # No suitable transcript found
             except Exception as e_gen:
                  print(f"    - WARNING: Error finding generated transcript for {video_id}: {e_gen}")
@@ -44,9 +43,9 @@ def get_transcript(video_id):
     # --- Fetch and process the transcript data ---
     if transcript_obj:
         try:
-            # print(f"    - Fetching transcript data for {video_id}...")
+            print(f"    - Fetching transcript data for {video_id}...")
             transcript_data = transcript_obj.fetch()
-            # print(f"    - Formatting transcript text for {video_id}...")
+            print(f"    - Formatting transcript text for {video_id}...")
 
             text_segments = []
             for entry in transcript_data:
@@ -56,10 +55,9 @@ def get_transcript(video_id):
                  elif isinstance(entry, dict) and 'text' in entry:
                      # Fallback for safety if format varies
                      text_segments.append(entry['text'])
-                 # else: Optional: log entries without text
 
             full_text = " ".join(text_segments)
-            # print(f"    - Successfully processed transcript for {video_id}")
+            print(f"    - Successfully processed transcript for {video_id}")
             return full_text
 
         except AttributeError as e_attr:

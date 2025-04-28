@@ -1,10 +1,10 @@
 import os
-import config              # Import all settings
-import utils               # Import utility functions
-import youtube_api         # Import YouTube functions
-import transcript_utils    # Import Transcript functions
-import ai_analyzer         # Import AI functions
-import json                # Import json for potential loading/checking
+import config
+import utils
+import youtube_api
+import transcript_utils
+import ai_analyzer
+import json
 
 def main():
     print("--- YouTube Transcript Critic ---")
@@ -24,10 +24,23 @@ def main():
     ai_model = ai_analyzer.build_genai_model()
 
     # --- Step 1: Search for Videos ---
+    search_queries = []
+    query = input("Enter search queries: (Type: Exit to stop adding queries) ")
+    while query.lower() != "exit":
+        search_queries.append(query)
+        query = input("Next query: ")
+
+    video_genres = []
+    genre = input("Enter video genres: (Type: Exit to stop adding genres) ")
+    while genre.lower() != "exit":
+        video_genres.append(genre)
+        genre = input("Next genre: ")
+
+
     videos_by_creator = youtube_api.search_videos(
         youtube_client=youtube,
-        queries=config.SEARCH_QUERIES,
-        genres=config.VIDEO_GENRES,
+        queries=search_queries,
+        genres=video_genres,
         max_results=config.MAX_RESULTS_PER_QUERY
     )
 
@@ -79,7 +92,6 @@ def main():
             print(f"  Saved combined transcripts to: {transcript_filename}")
         except IOError as e:
             print(f"  ERROR saving transcript file {transcript_filename}: {e}")
-            # continue # Optional: skip AI if saving fails
 
         # --- Step 3: Analyze with AI and Save Critique ---
         critique_json_text = ai_analyzer.analyze_transcripts(
@@ -88,12 +100,10 @@ def main():
             combined_transcript_text=combined_transcript_text
         )
 
-        # --- CHANGE FILE EXTENSION ---
         critique_filename = os.path.join(config.CRITIQUE_DIR, f"{sanitized_channel_name}_critique.json")
-        # --- END OF CHANGE ---
 
         try:
-            # Basic check: Is it JSON-like enough to save? (Starts with { or [)
+            # Basic checking for json-like structure (Starts with { or [)
             if critique_json_text.strip().startswith(("{", "[")):
                  # Save the raw JSON string returned by the AI
                  with open(critique_filename, "w", encoding="utf-8") as f:
