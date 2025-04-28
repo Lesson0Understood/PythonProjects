@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+
+{% block title %} Create Event {% endblock %}
+
+{% block content %}
+<script>
+    function confirmDeletion(pothole) {
+        var confirmation = confirm("Are you sure you want to delete this pothole?");
+        if (!confirmation) {
+            pothole.preventDefault();
+        }
+    }
+</script>
+
+<h2 class="create-pothole-title">Add Event</h2>
+
+<form method="POST" class="create-pothole-form" action="/delete/{{event_id}}" onsubmit="confirmDeletion(pothole)">
+    {{ form.hidden_tag() }}
+    <div>
+        {{ form.location.label }}
+        {{ form.location }}
+    </div>
+
+    <div>
+        {{ form.severity.label }}
+        {{ form.severity }}
+    </div>
+
+    <div>
+        {{ form.image.label }}
+        {{ form.image }}
+    </div>
+
+    <div>
+        {{ form.submit }}
+    </div>
+</form>
+
+{% endblock %}

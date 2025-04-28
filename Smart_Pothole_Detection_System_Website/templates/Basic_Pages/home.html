@@ -1,0 +1,85 @@
+{% extends "base.html" %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+  <style>
+    .hero-section {
+      /*background-image: url('{{ url_for('static', filename='images/Demos/hero.png') }}');*/
+      background-size: cover;
+      background-position: center;
+      height: 60vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: white;
+      text-align: center;
+    }
+
+    .hero-section h1 {
+      font-size: 4rem;
+      margin: 0;
+    }
+
+    .hero-section p {
+      font-size: 1.5rem;
+    }
+
+    .features-section {
+      padding: 40px 20px;
+      text-align: center;
+      background-color: #fff;
+      margin-left: 230px; /* Automatically adjust the left margin */
+      margin-right: 230px; /* Automatically adjust the right margin */
+      border-radius: 80px;
+    }
+
+    .features-section h2 {
+      font-size: 2.5rem;
+      margin-bottom: 20px;
+    }
+
+    .feature {
+      margin: 20px 0;
+    }
+
+    .feature img {
+      width: 100%;
+      max-width: 1200px;
+      height: auto;
+      border-radius: 10px;
+    }
+
+    .feature-description {
+      margin-top: 20px;
+      font-size: 1.2rem;
+      max-width: 800px;
+      margin: 20px auto;
+    }
+  </style>
+
+  <div class="hero-section">
+    <div>
+      <h1>Smart Pothole Detection System</h1>
+      <p>Making roads safer, one detection at a time</p>
+    </div>
+  </div>
+
+  <div class="features-section">
+    <h2>Main Features</h2>
+    <div class="feature">
+      <h3>The Map</h3>
+      <img src="{{ url_for('static', filename='images/Demos/map_demo2.png') }}" alt="Map Feature">
+      <div class="feature-description">
+        <p>Our interactive map allows users to view real-time data on potholes across the city. Utilizing state-of-the-art geolocation and mapping technologies, our system accurately pinpoints pothole locations and provides detailed information on their severity and collision history. Stay informed and navigate safely with our comprehensive map feature.</p>
+      </div>
+    </div>
+    <div class="feature">
+      <h3>The App</h3>
+      <img src="{{ url_for('static', filename='images/Demos/app_demo.jpg') }}" alt="App Feature">
+      <div class="feature-description">
+        <p>The Smart Pothole Detection app brings the power of our system to your smartphone. With real-time notifications, users can report new potholes, receive updates on existing ones, and plan safer routes. Our app ensures that you are always aware of road conditions, no matter where you are. Download it today and join our community of safer drivers.</p>
+      </div>
+    </div>
+  </div>
+{% endblock %}

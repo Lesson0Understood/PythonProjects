@@ -1,0 +1,461 @@
+/* Resetting some basic elements */
+body, h1, h2, h3, p, form {
+margin: 0;
+padding: 0;
+}
+
+body {
+font-family: 'Arial', sans-serif;
+line-height: 1.6;
+color: #333;
+background-color: #f4f4f4;
+padding: 0px;
+}
+
+header {
+background: #b22222;
+color: #fff;
+padding: 10px 0;
+text-align: center;
+}
+
+header h1 {
+margin: 0;
+}
+
+nav {
+display: flex;
+justify-content: center;
+background: #c23535;
+padding: 10px 0;
+}
+
+nav a {
+color: #fff;
+text-decoration: none;
+padding: 0 15px;
+}
+
+nav a:hover {
+color: #e6e6e6;
+}
+
+main {
+padding: 10px;
+}
+
+footer {
+text-align: center;
+padding: 20px 0;
+background: #a11d1d;
+color: #fff;
+position: fixed;
+left: 0;
+bottom: 0;
+width: 100%;
+}
+
+.pothole, form {
+background: #fff;
+padding: 15px;
+margin-bottom: 20px;
+border-radius: 5px;
+box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.pothole h3, form h2 {
+margin-bottom: 10px;
+color: #b22222;
+}
+
+.pothole p {
+color: #666;
+}
+
+form div {
+margin-bottom: 10px;
+}
+
+form label {
+display: block;
+margin-bottom: 5px;
+}
+
+form input[type='text'],
+form textarea {
+width: 100%;
+padding: 8px;
+border: 1px solid #ddd;
+border-radius: 4px;
+}
+
+form input[type="submit"]{
+    display: block;
+    width: 100%;
+    padding: 10px;
+    background: #b22222;
+    color: #fff;
+    border: 0;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+form input[type = 'submit']:hover{
+    background: #a11d1d;
+}
+
+.button-list {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    background-color: #c23535;
+}
+
+.button-list li {
+margin: 0 10px;
+}
+
+.button-list a.button {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #51dabe;
+    color: white;
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.1s;
+    border-radius: 25px;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.button-list a.button:hover {
+    background-color: #36baa0;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+}
+
+.button-list a.button:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.pothole-details {
+    text-align: center;
+    max-width: 100%;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+#pothole-title {
+    font-size: 2.5em;
+    color: #333;
+    margin-bottom: 0.2em;
+}
+
+#pothole-location {
+    font-size: 1.5em;
+    color: #666;
+    margin-bottom: 1em;
+}
+
+.description-box {
+    background-color: white;
+    border-radius: 15px;
+    padding: 30px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    text-align: left;
+    margin: 20px 5% 40px 5%;
+    width: 90%;
+    box-sizing: border-box;
+}
+
+.description-box p {
+    color: #333;
+    line-height: 1.6;
+    margin: 0;
+}
+
+.create-pothole-title {
+    text-align: center;
+    font-size: 2.5em;
+    color: #b22222;
+    margin-bottom: 1em;
+    padding: 20px 0;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.create-pothole-form {
+    max-width: 800px;
+    margin: 0 auto 80px; /* Added bottom margin */
+    padding: 40px;
+    background-color: white;
+    border-radius: 15px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Rest of the CSS remains the same */
+
+.create-pothole-form div {
+    margin-bottom: 25px;  /* Increased for more vertical space */
+}
+
+.create-pothole-form label {
+    display: block;
+    margin-bottom: 10px;  /* Increased */
+    font-weight: bold;
+    color: #333;
+    font-size: 18px;  /* Increased font size */
+}
+
+.create-pothole-form input[type="text"],
+.create-pothole-form textarea {
+    width: 100%;
+    padding: 12px;  /* Slightly increased */
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 16px;
+    box-sizing: border-box;
+}
+
+.create-pothole-form textarea {
+    resize: none;
+    height: 200px;  /* Increased height */
+}
+
+.create-pothole-form input[type="submit"] {
+    background-color: #b22222;
+    color: white;
+    border: none;
+    padding: 15px 25px;  /* Increased padding */
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 18px;  /* Increased font size */
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: background-color 0.3s;
+    display: block;
+    width: 100%;
+}
+
+.create-pothole-form input[type="submit"]:hover {
+    background-color: #a11d1d;
+}
+
+.login-page {
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #f4f4f4;
+    font-family: 'Arial', sans-serif;
+}
+.login-page .login-prompt {
+    text-align: center;
+    width: 80%;
+    max-width: 700px;
+    padding: 60px;
+    background-color: white;
+    border-radius: 15px;
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.1);
+    position: relative;
+}
+.login-page .login-prompt::before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    background: linear-gradient(45deg, #b22222, #51dabe);
+    z-index: -1;
+    border-radius: 17px;
+}
+.login-page .login-prompt h1 {
+    color: #b22222;
+    font-size: 3em;
+    margin-top: 0;
+    margin-bottom: 30px;
+}
+.login-page .login-prompt p {
+    color: #666;
+    font-size: 1.4em;
+    margin-bottom: 40px;
+    line-height: 1.6;
+}
+.login-page .login-button {
+    display: inline-block;
+    padding: 18px 36px;
+    background-color: #51dabe;
+    color: white;
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.1s;
+    border-radius: 30px;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    font-size: 1.2em;
+}
+.login-page .login-button:hover {
+    background-color: #36baa0;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2);
+}
+.login-page .login-button:active {
+    transform: translateY(0);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+}
+
+/* Styles for the 403 error page */
+#error-page-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+#error-page {
+    text-align: center;
+    background-color: #fff;
+    padding: 60px; /* Increase padding */
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin: 20px auto;
+    max-width: 800px; /* Increase max-width */
+    width: 100%; /* Ensure it takes full width */
+}
+
+#error-page h1 {
+    font-size: 4em; /* Increase font size */
+    margin: 0;
+    color: #e74c3c;
+}
+
+#error-page p {
+    font-size: 1.5em; /* Increase font size */
+    margin: 20px 0;
+}
+
+#error-page a {
+    text-decoration: none;
+    color: #3498db;
+    font-weight: bold;
+}
+
+#error-page a:hover {
+    text-decoration: underline;
+}
+
+.flashes {
+    list-style-type: none; /* Remove bullet points */
+    padding: 0;
+    margin: 0;
+}
+
+/* General style for all flash messages */
+.flashes li {
+    display: inline-block; /* Make the list items inline-block */
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    color: #fff; /* Default text color for all messages */
+}
+
+/* Style for different categories */
+.success {
+    background-color: #4CAF50; /* Green background for success messages */
+}
+
+.error {
+    background-color: #f44336; /* Red background for error messages */
+}
+
+.warning {
+    background-color: #ff9800; /* Orange background for warning messages */
+}
+
+/* Example for additional category */
+.info {
+    background-color: #2196F3; /* Blue background for info messages */
+}
+
+#delete_pothole_button a.button {
+    background-color: #ffa724;
+}
+
+#update_pothole_button a.button {
+    background-color: #ffa724;
+}
+
+#create_pothole_button a.button {
+    background-color: #ffa724;
+}
+
+.container_home {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    width: 100%; /* Adjust this value to control the width of the container */
+}
+
+.rectangle_home {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 450px;
+    height: 600px;
+    background-color: #ffffff;
+    color: rgb(0, 0, 0);
+    text-decoration: none;
+    font-size: 18px;
+    transition: background-color 0.3s;
+    overflow: hidden; /* Ensure content doesn't overflow the card */
+    border: 5px solid #333; /* Border around the card */
+    border-radius: 10px; /* Rounded corners for the card */
+}
+
+.rectangle_home:hover {
+    background-color: #f1f1f1;
+}
+
+.card_content {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start; /* Align items to the top */
+    align-items: center;
+    text-align: center;
+    height: 100%;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.card_title {
+    font-size: 24px;
+    margin: 0 0 15px;
+}
+
+.card_image {
+    width: 300px;
+    height: auto;
+    margin: 0 0 15px;
+    border: 5px solid #919191; /* Border around the image */
+    border-radius: 5px; /* Rounded corners for the image */
+}
+
+.card_description {
+    font-size: 16px;
+    margin: 0;
+}

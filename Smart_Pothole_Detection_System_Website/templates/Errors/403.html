@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block title %}
+Permission Denied
+{% endblock %}
+
+{% block content %}
+<div id="error-page">
+    <h1>403</h1>
+    <p>Permission Denied</p>
+    <p>You do not have the necessary permissions to access this page.</p>
+    <p><a href="{{ url_for('home') }}">Go to Homepage</a></p>
+</div>
+{% endblock %}

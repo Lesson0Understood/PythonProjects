@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block title %} Update pothole {% endblock %}
+
+{% block content %}
+
+<h2 class="create-pothole-title"> Update pothole</h2>
+
+<form method="POST" class="create-pothole-form">
+    {{ form.hidden_tag() }}
+    <div>
+        {{ form.location.label }}
+        {{ form.location }}
+    </div>
+
+    <div>
+        {{ form.severity.label }}
+        {{ form.severity }}
+    </div>
+
+    <div>
+        {{ form.image.label }}
+        {{ form.image }}
+    </div>
+
+    <div>
+        {{ form.submit }}
+    </div>
+</form>
+
+{% endblock %}

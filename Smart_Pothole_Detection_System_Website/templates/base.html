@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='CSS/main.css') }}">
+    <link rel="icon" type="image/png" href="{{ url_for('static', filename='images/Logos/logo2.png') }}">
+    <title>{% block title %}{% endblock %} - POFR</title>
+  </head>
+  <style>
+    #background-image {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-image: url('{{ url_for('static', filename='images/Background/background2_edit.jpg') }}');
+        background-repeat: no-repeat;
+        background-size: 100% 100%;
+        opacity: 0.4; /* Adjust this value for transparency */
+        z-index: -1; /* Ensure it is behind other content */
+    }
+
+  #content-container {
+      position: relative;
+      z-index: 1;
+  }
+  </style>
+
+<div id="background-image"></div>
+<div id="content-container">
+  <body>
+    <header>
+      <h1>Smart Pothole Detection System</h1>
+    </header>
+    <nav>
+      <ul class="button-list">
+        <li><a href="{{ url_for('home') }}" class="button">Home</a></li>
+        {% if current_user.is_authenticated %}
+        {% if current_user.has_role("Admin") %}
+        <li id="create_pothole_button"><a href="{{ url_for('create_pothole') }}" class="button">Add pothole</a></li>
+        {% endif %}
+        {% endif %}
+        {% block delete_update %}
+        {% endblock %}
+        <li><a href="{{ url_for('potholes') }}" class="button">Potholes</a></li>
+        <li><a href="{{ url_for('map') }}" class="button">Map</a></li>
+        <li><a href="{{ url_for('register') }}" class="button">Register</a></li>
+        <li><a href="{{ url_for('login') }}" class="button">Login</a></li>
+        <li><a href="{{ url_for('about') }}" class="button">About Us</a></li>
+        <li><a href="{{ url_for('logout') }}" class="button">Logout</a></li>
+      </ul>
+    </nav>
+    <main>
+      {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            <ul class="flashes">
+                    <li class="{{ messages[-1][0] }}">{{ messages[-1][1] }}</li>
+            </ul>
+        {% endif %}
+      {% endwith %}
+      {% block content %}{% endblock %}
+    </main>
+    <footer>
+      <p>&copy; <span id="year"></span> Smart Pothole Detection System - POFR</p>
+    </footer>
+    <script src="{{ url_for('static', filename='JavaScript/main.js') }}"></script>
+  </body>
+</div>
+</html>

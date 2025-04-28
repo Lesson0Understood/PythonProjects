@@ -1,0 +1,87 @@
+{% extends "base.html" %}
+
+{% block title %}Map{% endblock %}
+
+{% block content %}
+  <style>
+    #map-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 80vh;
+      margin-top: 0px; /* Added margin to lift the map up */
+      margin-bottom: 20px; /* Added margin to ensure it fits well within the footer */
+    }
+    #map {
+      width: 100%;
+      height: 100%;
+      border: 5px solid black;
+      box-sizing: border-box;
+    }
+    .popup-minor {
+      background-color: #d4edda;
+      color: #155724;
+    }
+    .popup-moderate {
+      background-color: #fff3cd;
+      color: #856404;
+    }
+    .popup-dangerous {
+      background-color: #f8d7da;
+      color: #721c24;
+    }
+    main {
+      padding: 0px;
+    }
+  </style>
+
+  <div id="map-container">
+    <div id="map"></div>
+  </div>
+
+  <script src="https://unpkg.com/maplibre-gl@latest/dist/maplibre-gl.js"></script>
+  <link href="https://unpkg.com/maplibre-gl@latest/dist/maplibre-gl.css" rel="stylesheet" />
+
+  <script>
+    var map = new maplibregl.Map({
+      container: 'map',
+      style: 'https://api.maptiler.com/maps/streets/style.json?key=EmKxi2DeYTBlzIwaWtWd', // MapTiler streets style
+      center: [35.4907677, 33.8182897], // starting position [lng, lat]
+      zoom: 9 // starting zoom
+    });
+
+    var potholes = {{ potholes | tojson | safe }};
+
+    potholes.forEach(function(pothole) {
+      var coords = pothole.location.split(' ');
+      var lat = parseFloat(coords[0]);
+      var lng = parseFloat(coords[1]);
+
+      var severityClass = '';
+      if (pothole.severity === 'Dangerous') {
+        severityClass = 'popup-dangerous';
+      } else if (pothole.severity === 'moderate') {
+        severityClass = 'popup-moderate';
+      } else if (pothole.severity === 'minor') {
+        severityClass = 'popup-minor';
+      }
+
+      var imagePath = "{{ url_for('static', filename='images/Potholes') }}" + '/' + pothole.image_name;
+
+      var popupContent = `
+        <div class="${severityClass}" style="text-align: center; padding: 10px; border-radius: 5px;">
+          <img src="${imagePath}" alt="Image" style="width: 100%; height: auto;">
+          <p><strong>Location:</strong> ${lat} | ${lng}</p>
+          <p><strong>Severity:</strong> ${pothole.severity}</p>
+        </div>
+      `;
+
+      var popup = new maplibregl.Popup({ offset: 25 }).setHTML(popupContent);
+
+      new maplibregl.Marker()
+        .setLngLat([lng, lat])
+        .setPopup(popup) // sets a popup on this marker
+        .addTo(map);
+    });
+    </script>
+{% endblock %}

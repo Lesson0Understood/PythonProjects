@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+{% block title %} Pothole Details {% endblock %}
+
+{% block content %}
+<style>
+    .description-box {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%; /* Ensure container stretches across the page */
+        margin: 20px 0;
+    }
+    
+    .centered-image {
+        width: 200px; /* Set fixed width for every image */
+        height: auto; /* Let the height adjust automatically to maintain aspect ratio */
+        object-fit: contain; /* Ensure image fits within the box */
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        padding: 4px;
+    }
+</style>
+
+<div class="pothole-details">
+    <h1 id="pothole-title">ID: {{ pothole.id }}</h1>
+    <h3 id="pothole-location">Location : {{ pothole.location }} | Severity : {{ pothole.severity }}</h3>
+    <div class="description-box">
+        <img src= "{{ url_for('static', filename="images/Potholes/"+ pothole.image) }}"></img>
+    </div>
+</div>
+
+{% endblock %}
+
+{% block delete_update %}
+{% if current_user.has_role("Admin") %}
+<li id="delete_pothole_button"><a href="{{ url_for('delete_pothole', pothole_id=pothole_id) }}" class="button">Delete pothole</a></li>
+<li id="update_pothole_button"><a href="{{ url_for('update_pothole', pothole_id=pothole_id) }}" class="button">Update pothole</a></li>
+{% endif %}
+{% endblock %}

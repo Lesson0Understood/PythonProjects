@@ -1,0 +1,87 @@
+{% extends "base.html" %}
+
+{% block title %}
+    About Us - Event Management System
+{% endblock %}
+
+{% block content %}
+    <style>
+        .container {
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: 20px;
+            background: #fff;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .about-section {
+            text-align: center;
+            padding: 50px 20px;
+        }
+        .about-section h2 {
+            color: #c0392b;
+            font-size: 36px;
+            margin-bottom: 20px;
+        }
+        .about-section p {
+            color: #333;
+            font-size: 18px;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+        .team {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+        }
+        .team-member {
+            background: #ecf0f1;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px;
+            text-align: center;
+            flex: 1 1 200px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .team-member img {
+            border-radius: 50%;
+            width: 100px;
+            height: 100px;
+            margin-bottom: 15px;
+        }
+        .team-member h3 {
+            margin: 10px 0;
+            color: #c0392b;
+        }
+        .team-member p {
+            color: #777;
+        }
+    </style>
+    <div class="container">
+        <div class="about-section">
+            <h2>About Us</h2>
+            <p>We are a team dedicated to serving the world by providing top-notch event management solutions. Our goal is to make your events memorable and stress-free.</p>
+            <p>Our team consists of experienced professionals who are passionate about delivering high-quality services and creating unique experiences for our clients.</p>
+            <p style="color:red;">Developer Note: This is not a real team but random people i found on the internet
+                because i thought it would make the website look more professional
+            </p>
+        </div>
+        <div class="team">
+            <div class="team-member">
+                <img src={{ url_for('static', filename='images/Team/team_member_1_edited.jpg') }} alt="Team Member 1">
+                <h3>I</h3>
+                <p>CEO & Founder</p>
+            </div>
+            <div class="team-member">
+                <img src={{ url_for('static', filename='images/Team/team_member_2.jpg') }} alt="Team Member 2">
+                <h3>me</h3>
+                <p>Head of Marketing</p>
+            </div>
+            <div class="team-member">
+                <img src={{ url_for('static', filename='images/Team/team_member_3.jpg') }} alt="Team Member 3">
+                <h3>myself</h3>
+                <p>Lead Developer</p>
+            </div>
+        </div>
+    </div>
+{% endblock %}
