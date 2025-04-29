@@ -41,7 +41,6 @@ This Python script searches YouTube for videos based on user-defined queries and
     ```bash
     pip install -r requirements.txt
     ```
-    *(You'll need to create a `requirements.txt` file containing `google-api-python-client`, `google-generativeai`, `youtube-transcript-api`)*
 
 3.  **Set API Keys:**
     *   **Crucial:** You MUST set your API keys as environment variables *before* running the script.
