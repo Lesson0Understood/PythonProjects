@@ -56,7 +56,6 @@ Additionally, a command-line interface (CLI) tool is included for direct databas
     ```bash
     pip install Flask Flask-SQLAlchemy Flask-Login Flask-Principal Flask-WTF Pillow prettytable termcolor python-inquirer art SQLAlchemy
     ```
-    *(Note: You might want to create a `requirements.txt` file for easier installation: `pip freeze > requirements.txt` and then users can just run `pip install -r requirements.txt`)*
 
 4.  **Database Location:** The web application (`main.py`) will automatically create the SQLite database file at `./instance/site.db`. Ensure the `database_viewer_pothole.py` script is placed correctly relative to this (the current script expects it one level up: `../instance/site.db`).
 
